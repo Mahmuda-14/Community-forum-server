@@ -142,7 +142,7 @@ async function run() {
     })
 
 
-    app.get('/users/admin/:email', verifyToken, async (req, res) => {
+    app.get('/users/admin/:email', verifyToken,verifyAdmin, async (req, res) => {
       const email = req.params.email;
       console.log(email);
       if (!req.decoded || email !== req.decoded.email) {
@@ -273,12 +273,6 @@ async function run() {
       const result = await feedbackCollection.insertOne(user);
       res.send(result);
     })
-
-
-
-
-
-
 
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
