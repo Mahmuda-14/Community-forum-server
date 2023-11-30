@@ -45,6 +45,7 @@ async function run() {
     const newsCollection = client.db('communityDB').collection('news');
     const tagCollection = client.db('communityDB').collection('tag');
     const feedbackCollection = client.db('communityDB').collection('feedback');
+    const aboutCollection = client.db('communityDB').collection('about');
 
 
 
@@ -271,6 +272,15 @@ async function run() {
     app.post('/feedback', async (req, res) => {
       const user = req.body;
       const result = await feedbackCollection.insertOne(user);
+      res.send(result);
+    })
+
+
+
+
+    app.post('/about', async (req, res) => {
+      const user = req.body;
+      const result = await aboutCollection.insertOne(user);
       res.send(result);
     })
 
